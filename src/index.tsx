@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+// import { Provider } from 'react-redux'
+// import store from './store'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { SnackbarProvider } from 'notistack'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+/* Material UI */
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/core/styles'
+
+/* Components */
+import AppLayout from './screens/AppLayout'
+
+import theme from './assets/theme'
+
+const app = (
+	// <Provider store={store}>
+	<BrowserRouter>
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<SnackbarProvider maxSnack={3}>
+				<AppLayout />
+			</SnackbarProvider>
+		</ThemeProvider>
+	</BrowserRouter>
+	// </Provider>
+)
+
+ReactDOM.render(app, document.getElementById('root'))
