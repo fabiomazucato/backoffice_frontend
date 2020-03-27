@@ -14,18 +14,28 @@ import Menu from './Menu'
 
 //https://github.com/mui-org/material-ui/blob/8a3755775e91e457eda4a9a9d15ce07f6606104a/docs/src/pages/getting-started/templates/sign-in-side/SignInSide.js
 
-function AppLayout(): JSX.Element {
+const isAuthenticated = (): boolean => {
+	return false
+}
+
+function Dashboard(): JSX.Element {
 	return (
 		<Fragment>
-			{/* <Header />
-			<Breadcrumb />
-			<Menu />
-			<Container maxWidth='lg'> */}
-			<Routes />
-			{/* </Container>
-			<Footer /> */}
+			{isAuthenticated() ? (
+				<Fragment>
+					<Header />
+					<Breadcrumb />
+					<Menu />
+					<Container maxWidth='lg'>
+						<Routes />
+					</Container>
+					<Footer />
+				</Fragment>
+			) : (
+				<Routes />
+			)}
 		</Fragment>
 	)
 }
 
-export default AppLayout
+export default Dashboard

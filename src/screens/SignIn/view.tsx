@@ -12,40 +12,35 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 
+/* Components */
+import PropagateLoader from '../../components/PropagateLoader'
+
+import branStill from '../../assets/images/brand/still.png'
+
 import { useStyles } from './styles'
+import { IViewProps } from './types'
 
-function MadeWithLove() {
-	return (
-		<Typography variant='body2' color='textSecondary' align='center'>
-			{'Built with love by the '}
-			<Link color='inherit' href='https://material-ui.com/'>
-				Material-UI
-			</Link>
-			{' team.'}
-		</Typography>
-	)
-}
+function SignIn(props: IViewProps): JSX.Element {
+	const { setEmail, setPassword, handleAuthenticate, labels, loading } = props
 
-function SignIn() {
 	const classes = useStyles()
 
 	return (
 		<Grid container component='main' className={classes.root}>
-			<CssBaseline />
-			<Grid item xs={false} sm={4} md={7} className={classes.image} />
+			<Grid item xs={false} sm={4} md={8} className={classes.image} />
 			<Grid
 				item
 				xs={12}
 				sm={8}
-				md={5}
+				md={4}
 				component={Paper}
 				elevation={6}
 				square
 			>
 				<div className={classes.paper}>
-					<Avatar className={classes.avatar}>
-						<LockOutlinedIcon />
-					</Avatar>
+					<div className={classes.avatar}>
+						<img src={branStill} className={classes.avatarImage} />
+					</div>
 					<Typography component='h1' variant='h5'>
 						Login
 					</Typography>
@@ -56,10 +51,11 @@ function SignIn() {
 							required
 							fullWidth
 							id='email'
-							label='Email Address'
+							label={labels.email.placeholder}
 							name='email'
 							autoComplete='email'
 							autoFocus
+							onChange={e => setEmail(e.target.value)}
 						/>
 						<TextField
 							variant='outlined'
@@ -67,40 +63,48 @@ function SignIn() {
 							required
 							fullWidth
 							name='password'
-							label='Password'
+							label={labels.password.placeholder}
 							type='password'
 							id='password'
 							autoComplete='current-password'
+							onChange={e => setPassword(e.target.value)}
 						/>
-						<FormControlLabel
-							control={
-								<Checkbox value='remember' color='primary' />
-							}
-							label='Remember me'
-						/>
+
 						<Button
-							type='submit'
+							type='button'
 							fullWidth
 							variant='contained'
 							color='primary'
 							className={classes.submit}
+							onClick={handleAuthenticate}
 						>
-							Sign In
+							{!loading ? (
+								'Acessar'
+							) : (
+								<PropagateLoader color={'#fff'} />
+							)}
 						</Button>
-						<Grid container>
-							<Grid item xs>
-								<Link href='#' variant='body2'>
-									Forgot password?
-								</Link>
-							</Grid>
+						<Grid container direction='row' justify='flex-end'>
 							<Grid item>
 								<Link href='#' variant='body2'>
-									{"Don't have an account? Sign Up"}
+									Esqueceu sua senha?
 								</Link>
 							</Grid>
 						</Grid>
 						<Box mt={5}>
-							<MadeWithLove />
+							<Typography
+								variant='body2'
+								color='textSecondary'
+								align='center'
+							>
+								{
+									'Solução gerencial integrada e componentes do sistema de '
+								}
+								<br />
+								{
+									'gestão financeira, controle de estoque e vendas.'
+								}
+							</Typography>
 						</Box>
 					</form>
 				</div>

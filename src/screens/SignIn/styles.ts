@@ -1,11 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles'
 
+import backgroundSingin from '../../assets/images/background_singin.jpg'
+import branStill from '../../assets/images/brand/still.png'
+
 export const useStyles = makeStyles(theme => ({
 	root: {
 		height: '100vh'
 	},
 	image: {
-		backgroundImage: 'url(https://source.unsplash.com/random)',
+		backgroundImage: `url(${backgroundSingin})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
 		backgroundPosition: 'center'
@@ -17,8 +20,10 @@ export const useStyles = makeStyles(theme => ({
 		alignItems: 'center'
 	},
 	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main
+		margin: theme.spacing(2)
+	},
+	avatarImage: {
+		height: 120
 	},
 	form: {
 		width: '100%', // Fix IE 11 issue.
