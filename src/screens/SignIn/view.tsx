@@ -21,7 +21,14 @@ import { useStyles } from './styles'
 import { IViewProps } from './types'
 
 function SignIn(props: IViewProps): JSX.Element {
-	const { setEmail, setPassword, handleAuthenticate, labels, loading } = props
+	const {
+		setEmail,
+		setPassword,
+		handleAuthenticate,
+		labels,
+		loading,
+		isActive
+	} = props
 
 	const classes = useStyles()
 
@@ -77,6 +84,7 @@ function SignIn(props: IViewProps): JSX.Element {
 							color='primary'
 							className={classes.submit}
 							onClick={handleAuthenticate}
+							disabled={isActive}
 						>
 							{!loading ? (
 								'Acessar'
@@ -91,21 +99,6 @@ function SignIn(props: IViewProps): JSX.Element {
 								</Link>
 							</Grid>
 						</Grid>
-						<Box mt={5}>
-							<Typography
-								variant='body2'
-								color='textSecondary'
-								align='center'
-							>
-								{
-									'Solução gerencial integrada e componentes do sistema de '
-								}
-								<br />
-								{
-									'gestão financeira, controle de estoque e vendas.'
-								}
-							</Typography>
-						</Box>
 					</form>
 				</div>
 			</Grid>

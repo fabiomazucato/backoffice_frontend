@@ -1,52 +1,43 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 /* Material UI */
-
+import clsx from 'clsx'
+import Drawer from '@material-ui/core/Drawer'
+import List from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
+
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+
+import { mainListItems, secondaryListItems } from './ListItems'
 
 import { IViewProps } from './types'
 
 function MenuView(props: IViewProps): JSX.Element {
-	const { handleMenu, handleClose, open, anchorEl, menuProps } = props
+	const { classes, open, handleDrawerOpen, handleDrawerClose } = props
 
 	return (
-		<Fragment>
-			<IconButton
-				aria-label='account of current user'
-				aria-controls='menu-appbar'
-				aria-haspopup='true'
-				onClick={handleMenu}
-				color='inherit'
-			>
-				<AccountCircle />
-			</IconButton>
-			<Menu
-				id='menu-appbar'
-				anchorEl={anchorEl}
-				anchorOrigin={menuProps}
-				keepMounted
-				transformOrigin={menuProps}
-				open={open}
-				onClose={handleClose}
-			>
-				<Link
-					to='/'
-					style={{ textDecoration: 'none', color: '#636363' }}
-				>
-					<MenuItem onClick={handleClose}>Lista de Pessoas</MenuItem>
-				</Link>
-				<Link
-					to='/people/create'
-					style={{ textDecoration: 'none', color: '#636363' }}
-				>
-					<MenuItem onClick={handleClose}>Cadastrar Pessoa</MenuItem>
-				</Link>
-			</Menu>
-		</Fragment>
+		<Drawer
+			variant='permanent'
+			classes={{
+				paper: clsx(
+					classes.drawerPaper,
+					!open && classes.drawerPaperClose
+				)
+			}}
+			open={open}
+		>
+			<div className={classes.toolbarIcon}>
+				<IconButton onClick={handleDrawerClose}>
+					<ChevronLeftIcon />
+				</IconButton>
+			</div>
+			<Divider />
+			<List>{mainListItems}</List>
+			<Divider />
+			<List>{secondaryListItems}</List>
+		</Drawer>
 	)
 }
 

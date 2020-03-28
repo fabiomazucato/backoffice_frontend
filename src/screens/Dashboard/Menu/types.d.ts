@@ -1,10 +1,12 @@
-export interface IProps {}
+export interface IProps {
+	open: boolean
+	handleDrawerOpen: () => void
+	handleDrawerClose: () => void
+}
 export interface IViewProps {
 	[x: string]: any
-	handleChange: (event) => void
-	handleMenu: (event) => void
-	handleClose: () => void
+	classes: any
 	open: boolean
-	anchorEl: any
-	menuProps: any
+	handleDrawerOpen: () => void
+	handleDrawerClose: () => void
 }

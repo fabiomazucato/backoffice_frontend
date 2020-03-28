@@ -12,7 +12,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 
 /* Components */
-import Dashboard from './screens/Dashboard'
+import Routes from './config/Routes'
 
 import theme from './assets/theme'
 
@@ -22,8 +22,8 @@ const app = (
 			<BrowserRouter>
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
-					<SnackbarProvider maxSnack={3}>
-						<Dashboard />
+					<SnackbarProvider maxSnack={2}>
+						<Routes />
 					</SnackbarProvider>
 				</ThemeProvider>
 			</BrowserRouter>

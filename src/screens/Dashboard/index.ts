@@ -1,14 +1,20 @@
 import { createElement, useState } from 'react'
-import { Redirect } from 'react-router-dom'
 
 import { IProps } from './types'
 import View from './view'
 import { useStyles } from './styles'
 
-function MenuContainer(props: IProps): JSX.Element {
-	const { open, handleDrawerOpen, handleDrawerClose } = props
-
+function DashboardContainer(props: IProps): JSX.Element {
 	const classes = useStyles()
+
+	const [open, setOpen] = useState(true)
+
+	const handleDrawerOpen = () => {
+		setOpen(true)
+	}
+	const handleDrawerClose = () => {
+		setOpen(false)
+	}
 
 	const viewProps = {
 		classes,
@@ -19,4 +25,5 @@ function MenuContainer(props: IProps): JSX.Element {
 
 	return createElement(View, viewProps)
 }
-export default MenuContainer
+
+export default DashboardContainer
