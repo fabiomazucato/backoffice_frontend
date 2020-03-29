@@ -62,7 +62,7 @@ function SignInContainer(props: IProps): JSX.Element {
 					variant: typesNotification.SUCCESS
 				})
 
-				props.history.push(PathRoutes.DASHBOARD_HOME)
+				props.history.push(PathRoutes.PANEL_HOME)
 			}, 3000)
 		} catch (err) {
 			setLoading(false)

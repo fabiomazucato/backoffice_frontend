@@ -40,7 +40,7 @@ function Header(props: IViewProps): JSX.Element {
 					noWrap
 					className={classes.title}
 				>
-					Dashboard
+					Painel
 				</Typography>
 				<IconButton color='inherit'>
 					<Badge badgeContent={4} color='secondary'>

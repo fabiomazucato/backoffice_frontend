@@ -34,7 +34,7 @@ function MenuView(props: IViewProps): JSX.Element {
 				</IconButton>
 			</div>
 			<Divider />
-			<List>{mainListItems}</List>
+			<List>{mainListItems()}</List>
 			<Divider />
 			<List>{secondaryListItems}</List>
 		</Drawer>
