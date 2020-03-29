@@ -18,7 +18,7 @@ import { AccessRoutes } from '../../helpers/AccessRoutes'
 
 //https://github.com/mui-org/material-ui/blob/8a3755775e91e457eda4a9a9d15ce07f6606104a/docs/src/pages/getting-started/templates/sign-in-side/SignInSide.js
 
-function Dashboard(props: any): JSX.Element {
+function Panel(props: any): JSX.Element {
 	const { classes, open, handleDrawerOpen, handleDrawerClose } = props
 
 	const routes: any = AccessRoutes()
@@ -54,4 +54,4 @@ function Dashboard(props: any): JSX.Element {
 	)
 }
 
-export default Dashboard
+export default Panel

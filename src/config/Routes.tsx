@@ -35,9 +35,14 @@ function Routes(): JSX.Element {
 					exact
 					component={PathScreens.SIGN_IN}
 				/>
+				<Route
+					path={PathRoutes.SIGN_OUT}
+					exact
+					component={PathScreens.SIGN_OUT}
+				/>
 				<PrivateRoute
-					path={PathRoutes.DASHBOARD}
-					component={PathScreens.DASHBOARD}
+					path={PathRoutes.PANEL}
+					component={PathScreens.PANEL}
 				/>
 				<Redirect from='*' to={PathRoutes.SIGN_IN} />
 			</Switch>

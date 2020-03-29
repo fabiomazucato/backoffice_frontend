@@ -4,7 +4,7 @@ import { IProps } from './types'
 import View from './view'
 import { useStyles } from './styles'
 
-function DashboardContainer(props: IProps): JSX.Element {
+function PanelContainer(props: IProps): JSX.Element {
 	const classes = useStyles()
 
 	const [open, setOpen] = useState(true)
@@ -26,4 +26,4 @@ function DashboardContainer(props: IProps): JSX.Element {
 	return createElement(View, viewProps)
 }
 
-export default DashboardContainer
+export default PanelContainer

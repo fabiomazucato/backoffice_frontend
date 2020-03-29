@@ -1,5 +1,4 @@
 import { createElement, useState } from 'react'
-import { Redirect } from 'react-router-dom'
 
 import { IProps } from './types'
 import View from './view'
