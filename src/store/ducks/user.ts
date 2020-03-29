@@ -4,6 +4,7 @@ import { IUser } from '../../models/User'
 /**
  * Action types & creators
  */
+
 export const { Types, Creators } = createActions({
 	updateUser: ['user'],
 	resetUser: []
@@ -40,7 +41,9 @@ const reset = (state = INITIAL_STATE, action: any) => ({
 /**
  * Reducer
  */
-export default createReducer(INITIAL_STATE, {
-	['' + Types.UPDATE_USER]: update,
-	['' + Types.RESET_USER]: reset
-})
+export const HANDLERS: any = {
+	[Types.UPDATE_USER as string]: update,
+	[Types.RESET_USER as string]: reset
+}
+
+export default createReducer(INITIAL_STATE, HANDLERS)

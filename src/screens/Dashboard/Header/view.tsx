@@ -1,31 +1,52 @@
 import React from 'react'
 
 /* Material UI */
-import Typography from '@material-ui/core/Typography'
+import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
+import Badge from '@material-ui/core/Badge'
 import MenuIcon from '@material-ui/icons/Menu'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 
 import { IViewProps } from './types'
 
 function Header(props: IViewProps): JSX.Element {
-	const { classes } = props
+	const { classes, open, handleDrawerOpen, handleDrawerClose } = props
 
 	return (
-		<AppBar position='static'>
-			<Toolbar>
+		<AppBar
+			position='absolute'
+			className={clsx(classes.appBar, open && classes.appBarShift)}
+		>
+			<Toolbar className={classes.toolbar}>
 				<IconButton
 					edge='start'
-					className={classes.menuButton}
 					color='inherit'
-					aria-label='menu'
+					aria-label='open drawer'
+					onClick={handleDrawerOpen}
+					className={clsx(
+						classes.menuButton,
+						open && classes.menuButtonHidden
+					)}
 				>
 					<MenuIcon />
 				</IconButton>
-				<Typography variant='h6' className={classes.title}>
-					{'React, Material UI, Redux e Duck Pattern'}
+				<Typography
+					component='h1'
+					variant='h6'
+					color='inherit'
+					noWrap
+					className={classes.title}
+				>
+					Dashboard
 				</Typography>
+				<IconButton color='inherit'>
+					<Badge badgeContent={4} color='secondary'>
+						<NotificationsIcon />
+					</Badge>
+				</IconButton>
 			</Toolbar>
 		</AppBar>
 	)

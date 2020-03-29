@@ -1,4 +1,4 @@
-import { createElement, useState } from 'react'
+import { createElement, useState, useEffect } from 'react'
 import { useSnackbar } from 'notistack'
 
 /* Redux */
@@ -9,13 +9,21 @@ import { IApplicationState } from '../../store/types'
 /* Model */
 import { IUser } from '../../models/User'
 
+/* Helpers */
+import PathRoutes from '../../helpers/PathRoutes'
+
+/* Contants */
+import { typesNotification } from '../../constants/typesNotification'
+
+import { IProps } from './types'
 import View from './view'
 
-function SignInContainer(): JSX.Element {
-	const { enqueueSnackbar } = useSnackbar()
+function SignInContainer(props: IProps): JSX.Element {
 	const dispatch = useDispatch()
+	const { enqueueSnackbar } = useSnackbar()
 
 	const [loading, setLoading] = useState(false)
+	const [isActive, setIsActive] = useState(true)
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -32,31 +40,34 @@ function SignInContainer(): JSX.Element {
 			if (email !== 'admin@still.com.br' || password !== '123456') {
 				setTimeout(() => {
 					enqueueSnackbar('Login e/ou senha incorretos', {
-						variant: 'error'
+						variant: typesNotification.ERROR
 					})
+
 					setLoading(false)
 				}, 3000)
 				return
 			}
 
-			// dispatch(
-			// 	userActions.update({
-			// 		id: Math.random(),
-			// 		name: 'Administrador',
-			// 		email,
-			// 		password
-			// 	})
-			// )
+			const user: IUser = {
+				id: String(Math.random()),
+				name: 'Administrador',
+				email,
+				password
+			}
+			dispatch(userActions.updateUser(user))
 
 			setTimeout(() => {
 				setLoading(false)
 				enqueueSnackbar('Você será redirecionado para o dashboard.', {
-					variant: 'success'
+					variant: typesNotification.SUCCESS
 				})
+
+				props.history.push(PathRoutes.DASHBOARD_HOME)
 			}, 3000)
 		} catch (err) {
+			setLoading(false)
 			enqueueSnackbar(`Aconteceu um erro: ${err}`, {
-				variant: 'error'
+				variant: typesNotification.ERROR
 			})
 		}
 	}
@@ -67,6 +78,14 @@ function SignInContainer(): JSX.Element {
 		fetchAuthenticate()
 	}
 
+	useEffect(() => {
+		setIsActive(!(email.length > 5 && password.length > 5))
+	}, [email, password])
+
+	// useEffect(() => {
+	// 	dispatch(userActions.resetUser())
+	// })
+
 	const viewProps = {
 		email,
 		password,
@@ -74,7 +93,8 @@ function SignInContainer(): JSX.Element {
 		setPassword,
 		handleAuthenticate,
 		labels,
-		loading
+		loading,
+		isActive
 	}
 
 	return createElement(View, viewProps)

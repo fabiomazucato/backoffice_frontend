@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 /* Helpers */
 import PathRoutes from '../helpers/PathRoutes'
@@ -28,28 +28,20 @@ const PrivateRoute = ({ component: Component, ...rest }: any): JSX.Element => (
 
 function Routes(): JSX.Element {
 	return (
-		<Switch>
-			<Route
-				path='/'
-				exact
-				render={() => <Redirect to={PathRoutes.SIGN_IN} />}
-			/>
-			<Route
-				path={PathRoutes.SIGN_IN}
-				exact
-				component={PathScreens.SIGN_IN}
-			/>
-			<PrivateRoute
-				path={PathRoutes.DASHBOARD}
-				component={PathRoutes.DASHBOARD}
-			/>
-			<Route
-				path={PathRoutes.NOT_FOUND}
-				exact
-				component={PathScreens.NOT_FOUND}
-			/>
-			<Redirect from='*' to={PathRoutes.NOT_FOUND} />
-		</Switch>
+		<HashRouter basename={'/'}>
+			<Switch>
+				<Route
+					path={PathRoutes.SIGN_IN}
+					exact
+					component={PathScreens.SIGN_IN}
+				/>
+				<PrivateRoute
+					path={PathRoutes.DASHBOARD}
+					component={PathScreens.DASHBOARD}
+				/>
+				<Redirect from='*' to={PathRoutes.SIGN_IN} />
+			</Switch>
+		</HashRouter>
 	)
 }
 

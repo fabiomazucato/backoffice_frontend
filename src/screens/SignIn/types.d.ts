@@ -1,6 +1,8 @@
 import { IUser } from '../../models/User'
 
-export interface IProps {}
+export interface IProps {
+	[x: string]: any
+}
 
 export interface IViewProps {
 	[x: string]: any
@@ -14,4 +16,5 @@ export interface IViewProps {
 
 	labels: any
 	loading: boolean
+	isActive: boolean
 }
